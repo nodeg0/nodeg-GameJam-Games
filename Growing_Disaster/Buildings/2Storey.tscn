@@ -1,0 +1,154 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Sound/Destroyed1.wav" type="AudioStream" id=1]
+[ext_resource path="res://Buildings/2StoreySmall.png" type="Texture" id=2]
+[ext_resource path="res://Buildings/Structure.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Sound/Damage3.wav" type="AudioStream" id=4]
+[ext_resource path="res://Buildings/2Storey.gd" type="Script" id=5]
+[ext_resource path="res://Buildings/2x2square.png" type="Texture" id=6]
+
+[sub_resource type="Animation" id=1]
+resource_name = "destroy2Storey"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Particles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 32, 64 ), Rect2( 0, -16, 16, 16 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "damage"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 9.99754, -27.2995 ), Vector2( 7.99754, -27.2995 ), Vector2( 5.99754, -27.2995 ), Vector2( 7.99754, -27.2995 ), Vector2( 5.99754, -27.2995 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/Particles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.345098 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="2Storey" instance=ExtResource( 3 )]
+script = ExtResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="." index="0"]
+position = Vector2( 5.17138, -10.4197 )
+scale = Vector2( 0.676719, 0.693051 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" parent="." index="1"]
+position = Vector2( 5.99754, -27.2995 )
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 32, 64 )
+
+[node name="Particles2D" parent="Sprite" index="0"]
+position = Vector2( 0.25, 25.25 )
+
+[node name="AnimationPlayer" parent="." index="2"]
+anims/destroy2Storey = SubResource( 1 )
+
+[node name="Position2D" type="Position2D" parent="." index="4"]
+position = Vector2( 14, 0 )
+
+[node name="Position2D2" type="Position2D" parent="." index="5"]
+position = Vector2( 15, -20 )
+
+[node name="Position2D3" type="Position2D" parent="." index="6"]
+position = Vector2( 0, -20 )
+
+[node name="DamageAnimationPlayer" type="AnimationPlayer" parent="." index="7"]
+anims/damage = SubResource( 2 )

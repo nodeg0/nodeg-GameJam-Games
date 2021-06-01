@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/homescreen.ogg-0b355ff3186b34bfbfcf5b83e4473b56.oggstr"
+
+[deps]
+
+source_file="res://homescreen.ogg"
+dest_files=[ "res://.import/homescreen.ogg-0b355ff3186b34bfbfcf5b83e4473b56.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
